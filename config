@@ -1,6 +1,6 @@
 postmaster admin@gmxx.site
 smtp-port 25
-smtp-listener 184.164.70.11:25
+smtp-listener QQQipQQQ:QQQportQQQ
 <source 0/0>
 	log-connections yes
 	log-commands    yes      # WARNING: verbose!
@@ -30,10 +30,9 @@ log-file /var/log/pmta/log        # logrotate is used for rotation
 
 spool /var/spool/pmta
 
-http-mgmt-port 1983
+http-mgmt-port 33666
 http-access 127.0.0.1 admin
-http-access 0/0 monitor
-http-access 209.159.147.236 admin
+http-access 127.0.0.1 monitor
 
 
 
@@ -42,8 +41,8 @@ http-access 209.159.147.236 admin
 
 #<spool /var/spool/pmta>
 #</spool>
-<smtp-user user1>
-	password pass123
+<smtp-user admin>
+	password admin667788
 	source {smtpuser-auth}
 </smtp-user>
 <source {smtpuser-auth}>
@@ -60,15 +59,13 @@ http-access 209.159.147.236 admin
 
 #BEGIN VIRTUAL MTAS 
 <virtual-mta pmta-vmta1>
-smtp-source-host 184.164.70.11 server.gmxx.site
-#domain-key dkim,*,/home/admin/conf/mail/example.com/dkim.pem
+smtp-source-host QQQipQQQ QQQhostnameQQQ
+domain-key mykey,*,/etc/pmta/mykey.QQQhostnameQQQ.pem
 #domain-key default,*,/var/cpanel/domain_keys/private/example.com 
 <domain *>
 max-msg-rate 400/h
 </domain>
-</virtual-mta> <domain gmxx.site>
-route [127.0.0.1]:25
-</domain>
+</virtual-mta>
 #END VIRTUAL MTAS
 
 
@@ -90,6 +87,3 @@ virtual-mta pmta-vmta1
     process-x-virtual-mta yes
 </source>
 
-<domain gmxx.site>
-route [127.0.0.1]:25
-</domain>
