@@ -1,5 +1,5 @@
 postmaster admin@gmxx.site
-smtp-port QQQportQQQ
+smtp-port 25
 smtp-listener QQQipQQQ:QQQportQQQ
 <source 0/0>
 	log-connections yes
